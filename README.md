@@ -2,7 +2,8 @@
 
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
 [![Package on Crates.io](https://img.shields.io/crates/v/known-errors)](https://crates.io/crates/known-errors)
-[![Package on PyPI](https://img.shields.io/pypi/v/known-errors)](https://pypi.org/project/known-errors/)
+[![Package on PyPI](https://img.shields.io/pypi/v/known-errors)](https://pypi.org/project/known-errors)
+[![Package on RubyGems](https://img.shields.io/gem/v/known-errors)](https://rubygems.org/gems/known-errors)
 
 Well-known errors.
 
@@ -18,6 +19,13 @@ cargo add known-errors
 
 ```bash
 pip install -U known-errors
+```
+
+### Installation from RubyGems
+
+```bash
+gem install known-errors
+bundle add known-errors
 ```
 
 ## 👨‍💻 Development
