@@ -42,13 +42,14 @@ cargo clippy --workspace --all-targets -- -D warnings
 
 - Check changed integrations individually, including supported no-std builds.
   `cargo test --workspace` includes doctests; `--tests` alone skips them.
-- Known failures: `gofer` lacks required `std`; `std` + `error-stack` causes
-  overlapping `Context` impls; packaged doctests reference a workspace-only README.
+- Known failures: `gofer` lacks required `std`; packaged doctests reference a
+  workspace-only README.
   Recheck/report failures; do not suppress them to pass checks.
 - Stable rustfmt warns about nightly-only `imports_granularity`.
 - Python smoke check, from `python/` with Python >=3.10:
   `PYTHONPATH=src python3 -B -c 'import known_errors'`.
 - Ruby smoke check, from `ruby/`: `ruby -Ilib -rknown-errors -e 'p Known::Errors'`.
-- No behavioral test suites yet; imports/builds are only smoke checks.
+- Rust error-stack integration tests cover builds with and without `std`.
+  Python and Ruby imports/builds are only smoke checks.
 - Packaging changes: `cargo package` in `rust/`, `uv build` in `python/`,
   `gem build known-errors.gemspec` in `ruby/`. Test built artifacts too.

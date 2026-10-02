@@ -56,3 +56,11 @@ jobs:
         id: run-tests
         if: ${{ steps.check-tests.outcome == 'success' }}
         run: cd rust && cargo +${{ steps.install-rust.outputs.name }} test --workspace --tests --no-fail-fast
+      - name: Test error-stack integration (with std)
+        if: ${{ always() }}
+        working-directory: rust
+        run: cargo +${{ steps.install-rust.outputs.name }} test --workspace --features error-stack
+      - name: Test error-stack integration (without std)
+        if: ${{ always() }}
+        working-directory: rust
+        run: cargo +${{ steps.install-rust.outputs.name }} test --workspace --no-default-features --features sysexits,error-stack

@@ -17,6 +17,9 @@ pub type SysexitsResult<T> = core::result::Result<T, SysexitsError>;
 /// > the caller of the process can get a rough estimation about the failure
 /// > class without looking up the source code.
 ///
+/// With the `error-stack` feature, this type can be used as an
+/// `error_stack::Report` context with or without the `std` feature.
+///
 /// [`sysexits(3)`]: https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man3/sysexits.3.html
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -388,7 +391,8 @@ impl std::process::Termination for SysexitsError {
 #[cfg(feature = "std")]
 impl std::error::Error for SysexitsError {}
 
-#[cfg(feature = "error-stack")]
+// With std, error-stack's blanket implementation for Error provides Context.
+#[cfg(all(feature = "error-stack", not(feature = "std")))]
 impl error_stack::Context for SysexitsError {}
 
 /// Exit the process with the given exit code.
